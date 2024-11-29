@@ -532,10 +532,10 @@
                   phone: this.order.phone,
                   method: this.order.method,
                   cart: this.cart.map((item) => ({
-                    id: item.id, // Ensure this matches MongoDB's `id` field
+                    id: item.id, 
                     title: item.title,
                     price: item.price,
-                    quantity: 1, // Assuming quantity of 1 for simplicity
+                    quantity: 1, 
                   })),
                   totalPrice: this.totalPrice,
                 };
