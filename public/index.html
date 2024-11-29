@@ -188,14 +188,14 @@
           data: {
             // General properties
             sitename: "After School Explorers",
-            sortOrder: "asc", // Default sort order
+            sortOrder: "asc", 
             sortCriteria: "name-asc",
             searchQuery: "",
-            stateFilter: "", // State filter for activities
+            stateFilter: "", 
             showProduct: true,
 
             searchResults: [],
-            // Activities and cart
+            
             activities: [
               {
                 id: 1001,
@@ -310,7 +310,7 @@
               },
             ],
 
-            // Empty array initially
+            
             cart: [],
             order: {
               firstName: "",
@@ -326,16 +326,16 @@
             showProduct: true,
             sortCriteria: "name-asc",
             searchQuery: "",
-            stateFilter: "", // New property for state filter
+            stateFilter: "", 
           },
 
           created() {
-            // Fetch data when the component is created
+            
             this.fetchActivities();
           },
 
           computed: {
-            // Filter and sort activities based on user input
+          
             filteredAndSortedActivities() {
               const query = this.searchQuery.toLowerCase();
               const sortedActivities = this.activities
@@ -409,7 +409,7 @@
           },
 
           methods: {
-            // Fetch activities from the server
+           
             async fetchActivities() {
               try {
                 const response = await fetch(
