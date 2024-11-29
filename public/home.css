@@ -94,6 +94,13 @@ nav a:hover {
   }
 }
 
+.logo {
+  width: 300px; 
+  height: 300px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+}
+
 main {
   padding: 20px;
   text-align: center;
