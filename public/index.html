@@ -19,7 +19,11 @@
       <header>
         <h1>{{ sitename }}</h1>
         <div class="logo-container">
-          <img src="images/logo.png" alt="Logo" class="logo" />
+          <img
+            src="http://localhost:3000/images/A.png"
+            alt="Logo"
+            class="logo"
+          />
         </div>
         <div class="search-container">
           <input type="text" v-model="searchQuery" placeholder="Search.." />
@@ -188,14 +192,14 @@
           data: {
             // General properties
             sitename: "After School Explorers",
-            sortOrder: "asc", 
+            sortOrder: "asc", // Default sort order
             sortCriteria: "name-asc",
             searchQuery: "",
-            stateFilter: "", 
+            stateFilter: "", // State filter for activities
             showProduct: true,
 
             searchResults: [],
-            
+            // Activities and cart
             activities: [
               {
                 id: 1001,
@@ -245,7 +249,7 @@
                 id: 1005,
                 title: "Makeup Club",
                 description: "Master the art of makeup with our experts.",
-                location: "Abu Dhabi",
+                location: "Ajman",
                 price: 80,
                 availableInventory: 10,
                 image: "http://localhost:3000/images/makeupclub.png",
@@ -279,7 +283,7 @@
                 id: 1008,
                 title: "Robotics Club",
                 description: "Build and program robots in our exciting club.",
-                location: "Dubai",
+                location: "Ajman",
                 price: 30,
                 availableInventory: 10,
                 image: "http://localhost:3000/images/robotics.png",
@@ -301,7 +305,7 @@
                 id: 1010,
                 title: "Chess Club",
                 description: "Sharpen your chess skills with fellow players.",
-                location: "Abu Dhabi",
+                location: "Ajman",
                 price: 90,
                 availableInventory: 8,
                 image: "http://localhost:3000/images/chessclub.png",
@@ -310,7 +314,7 @@
               },
             ],
 
-            
+            // Empty array initially
             cart: [],
             order: {
               firstName: "",
@@ -326,16 +330,16 @@
             showProduct: true,
             sortCriteria: "name-asc",
             searchQuery: "",
-            stateFilter: "", 
+            stateFilter: "", // New property for state filter
           },
 
           created() {
-            
+            // Fetch data when the component is created
             this.fetchActivities();
           },
 
           computed: {
-          
+            // Filter and sort activities based on user input
             filteredAndSortedActivities() {
               const query = this.searchQuery.toLowerCase();
               const sortedActivities = this.activities
@@ -409,11 +413,11 @@
           },
 
           methods: {
-           
+            // Fetch activities from the server
             async fetchActivities() {
               try {
                 const response = await fetch(
-                  "http://localhost:3000/collection/orders"
+                  "https://https://backend-coursework-8lce.onrender.com/collection/orders"
                 );
                 const data = await response.json();
                 this.activities = [
@@ -532,21 +536,24 @@
                   phone: this.order.phone,
                   method: this.order.method,
                   cart: this.cart.map((item) => ({
-                    id: item.id, 
+                    id: item.id, // Ensure this matches MongoDB's `id` field
                     title: item.title,
                     price: item.price,
-                    quantity: 1, 
+                    quantity: 1, // Assuming quantity of 1 for simplicity
                   })),
                   totalPrice: this.totalPrice,
                 };
 
-                fetch("http://localhost:3000/place-order", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(orderData),
-                })
+                fetch(
+                  "https://backend-coursework-8lce.onrender.com/place-order",
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(orderData),
+                  }
+                )
                   .then((response) => {
                     if (!response.ok) {
                       return response.json().then((error) => {
